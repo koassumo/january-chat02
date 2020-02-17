@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="center" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.geekbrains.chat.client.Controller">
+    <HBox fx:id="loginBox">
+        <TextField fx:id="loginField" promptText="Логин" HBox.hgrow="ALWAYS">
+            <font>
+                <Font name="System" size="16" />
+            </font>
+        </TextField>
+        <PasswordField fx:id="passField" onAction="#tryToAuth" promptText="Пароль" HBox.hgrow="ALWAYS">
+            <font>
+                <Font name="System" size="16" />
+            </font>
+        </PasswordField>
+        <Button minWidth="100" onAction="#tryToAuth" text="Войти" HBox.hgrow="ALWAYS">
+            <font>
+                <Font name="System" size="16" />
+            </font>
+        </Button>
+    </HBox>
+
+    <HBox VBox.vgrow="ALWAYS">
+        <TextArea fx:id="textArea" editable="false" HBox.hgrow="ALWAYS">
+            <font>
+                <Font name="System" size="16" />
+            </font>
+        </TextArea>
+        <ListView fx:id="clientsList" maxWidth="200" minWidth="200"/>
+    </HBox>
+
+    <TextField fx:id="msgField" onAction="#sendMsg">
+        <font>
+            <Font name="System" size="16" />
+        </font>
+    </TextField>
+</VBox>
