@@ -28,7 +28,18 @@ public class Server {
             while (true) {
                 Socket socket = serverSocket.accept();
                 System.out.println("Клиент подключился");
-                new ClientHandler(this, socket);
+
+// не работает, конечно (( Концептуально:
+// 1) потоки должны создаваться здесь, а не в ClientHandler, чтобы можно было из Servera управлять всем пулом
+// 2) но потоков не может же быть меньше чем клиентов? тогда, наверное имеет смысл использовать newCachedTreadPool ?
+                new Thread(() -> {
+                    try {
+                        new ClientHandler(this, socket);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
+
             }
         } catch (IOException e) {
             e.printStackTrace();
